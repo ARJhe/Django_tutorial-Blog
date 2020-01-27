@@ -1,0 +1,73 @@
+.header{
+    position: fixed;
+    height: 100%;
+    background-color: #2a2a2a !important;
+    color: #5a5a5a !important;
+    float: left;
+    left: 0;
+    line-height: 20px;
+    margin-bottom: 20px;
+    top: 0;
+    width: 45px;
+    z-index: 87;
+}
+.header-inner{
+    position: relative;
+    margin: 0 auto;
+    width: 100% !important;
+    padding: 0 0 0 0 !important;
+}
+.site-nav{
+    margin:0 -10px;
+    padding:0 10px;
+    clear:both;
+    border-top:1px solid #ddd
+}
+.site-meta{
+    margin: 0;
+    text-align: left;
+    float: left;
+    margin-left: -20px;
+    line-height: normal;
+}
+.menu{
+    padding-left: 0;
+    text-align: center;
+    color: #5a5a5a;
+    margin: 0 0 0 0 !important;
+    font-size: 16px;
+    width: 100%;
+    float: left !important;
+    line-height: 20px;
+    position: relative;
+}
+.website-text-logo{
+    border: none;
+    background-color: #60cc67;
+    color: #fff;
+    display: block;
+    font-size: 18px;
+    font-family: "Times New Roman","Georgia",serif;
+    line-height: 25px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    text-align: center;
+    text-shadow: #23a014 0 1px 0;
+}
+.text-logo-eg{
+    display: inline-block;
+    font-weight: bold;
+}
+.cus-menu{
+    bottom: 0;
+    color: #555;
+    font-family: Georgia,"Times New Roman",Times,serif;
+    font-size: 14px;
+    line-height: 20px;
+    padding-left: 0;
+    padding-bottom: 10px;
+    position: absolute;
+    width: 45px;
+}

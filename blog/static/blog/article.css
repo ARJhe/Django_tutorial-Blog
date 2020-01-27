@@ -1,0 +1,32 @@
+.main-inner{
+    margin-top: 80px;
+    margin: 0 auto;
+    width: 700px;
+}
+.post-type-normal{
+    opacity: 1;
+    display: block;
+    transform: translateY(0px);
+}
+.post-index-border{
+    border-bottom-color: #d9d9d9;
+    border-bottom-style: dashed;
+    border-bottom-width: 1px;
+    margin-top: 40px !important;
+    padding-bottom: 40px;
+}
+.post-title{
+    font-size: 28px;
+}
+.post-meta{
+    margin: 3px 0 60px 0;
+    color: #999;
+    font-family: 'Lato',"Roboto Slab","PingFang SC","microsoft jhenghei","Microsoft YaHei",sans-serif;
+    font-size: 12px;
+}
+.post-body{
+    font-family: 'Lato',"Roboto Slab","PingFang SC","microsoft jhenghei","Microsoft YaHei",sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: #555;
+}
