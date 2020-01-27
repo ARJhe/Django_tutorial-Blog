@@ -1,4 +1,5 @@
 {% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
 {% block content%}
 <div class="content-section">
     <form method="POST">
@@ -6,8 +7,8 @@
         {% csrf_token %}
         <fieldset class="form-group">
             <legend class="border-bottom mb-4">Join Today</legend>
-            <!-- variable form we have pass it in views.py -->
-            {{ form.as_p }}
+            <!-- variable form we have pass it from views.py -->
+            {{ form|crispy }}
         </fieldset>
         <div class="form-group">
             <button class="btn btn-outline-info" type="submit">Sign Up</button>
