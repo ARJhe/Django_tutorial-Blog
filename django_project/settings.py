@@ -127,5 +127,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+# after loggin in direct to home page
 LOGIN_REDIRECT_URL = 'blog_home'
+# if not login and link profile will be redirect to login page
+# since we attach @login_required to profile method
+LOGIN_URL = 'login'
 
