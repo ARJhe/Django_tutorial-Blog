@@ -43,7 +43,6 @@
 }
 .website-text-logo{
     border: none;
-    background-color: #60cc67;
     color: #fff;
     display: block;
     font-size: 18px;
@@ -60,6 +59,9 @@
     display: inline-block;
     font-weight: bold;
 }
+.website-text-logo:hover{
+    background-color: #60cc67;
+}
 .cus-menu{
     bottom: 0;
     color: #555;
@@ -68,6 +70,9 @@
     line-height: 20px;
     padding-left: 0;
     padding-bottom: 10px;
-    position: absolute;
+    position: fixed !important;
     width: 45px;
+}
+.blog-home{
+    background-color: #60cc67;
 }

@@ -3,18 +3,20 @@
 <html lang="en">
 <head>
     <style>
+
     </style>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/css/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/css/article.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/css/next.css' %}">
 
-    <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'blog/article.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'blog/next.css' %}">
     {% if title %}
     <title>Django Blog - {{ title }}</title>
     {% else %}
@@ -26,61 +28,33 @@
     <div class="header-inner">
         <nav class="site-nav">
             <div class="menu">
-                <a class="website-text-logo" href="{% url 'blog_home' %}">
-                    R
+                <a class="website-text-logo blog-home" href="{% url 'blog_home' %}" title="部落格">
+                    <i class="fa fa-home"></i>
                 </a>
-                <a class="website-text-logo" href="{% url 'blog_about' %}">
+                <a class="website-text-logo" href="{% url 'blog_about' %}" title="關於作者">
                     <i class="fa fa-fw fa-user"></i>
                 </a>
+            </div>
+            <div class="cus-menu">
                 {% if user.is_authenticated %}
-                 <a class="website-text-logo" href="{% url 'profile' %}">
-                     <i class="fa fa-address-card"></i>
-                 </a>
-                <a class="website-text-logo" href="{% url 'logout' %}">
+                <a class="website-text-logo" href="{% url 'profile' %}" title="個人資料">
+                    <i class="fa fa-address-card"></i>
+                </a>
+                <a class="website-text-logo" href="{% url 'logout' %}" title="登出">
                     <i class="fa fa-sign-out"></i>
                 </a>
                 {% else %}
-                <a class="website-text-logo" href="{% url 'login' %}">
-                    <i class="fa fa-sign-in"></i>
-                </a>
-                <a class="website-text-logo" href="{% url 'register' %}">
+                <a class="website-text-logo" href="{% url 'register' %}" title="註冊(暫不開放)">
                     <i class="fa fa-pencil-square-o"></i>
                 </a>
+                <a class="website-text-logo" href="{% url 'login' %}" title="登入">
+                    <i class="fa fa-sign-in"></i>
+                </a>
                 {% endif %}
-            </div>
-            <div class="cus-menu">
-
             </div>
         </nav>
     </div>
 </header>
-<!--<header class="site-header">-->
-<!--    <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">-->
-<!--        <div class="container">-->
-<!--            <a class="navbar-brand mr-4" href="{% url 'blog_home' %}">Django Blog</a>-->
-<!--            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle"-->
-<!--                    aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">-->
-<!--                <span class="navbar-toggler-icon"></span>-->
-<!--            </button>-->
-<!--            <div class="collapse navbar-collapse" id="navbarToggle">-->
-<!--                <div class="navbar-nav mr-auto">-->
-<!--                    <a class="nav-item nav-link" href="{% url 'blog_home' %}">Home</a>-->
-<!--                    <a class="nav-item nav-link" href="{% url 'blog_about' %}">About</a>-->
-<!--                </div>-->
-<!--                &lt;!&ndash; Navbar Right Side &ndash;&gt;-->
-<!--                <div class="navbar-nav">-->
-<!--                    {% if user.is_authenticated %}-->
-<!--                    <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>-->
-<!--                    <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>-->
-<!--                    {% else %}-->
-<!--                    <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>-->
-<!--                    <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>-->
-<!--                    {% endif %}-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </nav>-->
-<!--</header>-->
 <main role="main" class="container">
     <div class="row">
         <div class="col-md-8">
@@ -108,20 +82,15 @@
         <!--        </div>-->
     </div>
 </main>
-
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"-->
-<!--        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"-->
-<!--        crossorigin="anonymous"></script>-->
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"-->
-<!--        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"-->
-<!--        crossorigin="anonymous"></script>-->
-<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"-->
-<!--        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"-->
-<!--        crossorigin="anonymous"></script>-->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<script type='text/javascript' src="{% static 'blog/js/jquery.tipsy.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'blog/css/tipsy.css' %}">
+<script>
+    $('.website-text-logo').tipsy({gravity: 'w',html: true });
+</script>
 </body>
 </html>
