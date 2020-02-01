@@ -3,7 +3,9 @@
 <html lang="en">
 <head>
     <style>
-
+        body{
+        margin-top: unset !important;
+        }
     </style>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -24,40 +26,37 @@
     {% endif %}
 </head>
 <body>
-<header class="header">
-    <div class="header-inner">
-        <nav class="site-nav">
-            <div class="menu">
-                <a class="website-text-logo blog-home" href="{% url 'blog_home' %}" title="部落格">
-                    <i class="fa fa-home"></i>
-                </a>
-                <a class="website-text-logo" href="{% url 'blog_about' %}" title="關於作者">
-                    <i class="fa fa-fw fa-user"></i>
-                </a>
-            </div>
-            <div class="cus-menu">
-                {% if user.is_authenticated %}
-                <a class="website-text-logo" href="{% url 'profile' %}" title="個人資料">
-                    <i class="fa fa-address-card"></i>
-                </a>
-                <a class="website-text-logo" href="{% url 'logout' %}" title="登出">
-                    <i class="fa fa-sign-out"></i>
-                </a>
-                {% else %}
-                <a class="website-text-logo" href="{% url 'register' %}" title="註冊(暫不開放)">
-                    <i class="fa fa-pencil-square-o"></i>
-                </a>
-                <a class="website-text-logo" href="{% url 'login' %}" title="登入">
-                    <i class="fa fa-sign-in"></i>
-                </a>
-                {% endif %}
-            </div>
-        </nav>
+
+<main>
+    <div class="nav">
+        <div class="menu">
+            <a class="website-text-logo" href="{% url 'blog_home' %}" title="部落格">
+                <i class="fa fa-home"></i>
+            </a>
+            <a class="website-text-logo" href="{% url 'blog_about' %}" title="關於作者">
+                <i class="fa fa-user"></i>
+            </a>
+        </div>
+        <div class="cus-menu">
+            {% if user.is_authenticated %}
+            <a class="website-text-logo" href="{% url 'profile' %}" title="個人資料">
+                <i class="fa fa-address-card"></i>
+            </a>
+            <a class="website-text-logo" href="{% url 'logout' %}" title="登出">
+                <i class="fa fa-sign-out"></i>
+            </a>
+            {% else %}
+            <a class="website-text-logo" href="{% url 'register' %}" title="註冊(不開放)">
+                <i class="fa fa-pencil-square-o"></i>
+            </a>
+            <a class="website-text-logo" href="{% url 'login' %}" title="登入">
+                <i class="fa fa-sign-in"></i>
+            </a>
+            {% endif %}
+        </div>
     </div>
-</header>
-<main role="main" class="container">
-    <div class="row">
-        <div class="col-md-8">
+    <div class="content">
+        <div class="container">
             {% if messages %}
             {% for message in messages %}
             <div class="alert alert-{{ message.tags }}">
@@ -67,19 +66,9 @@
             {% endif %}
             {% block content %}{% endblock %}
         </div>
-        <!--        <div class="col-md-4">-->
-        <!--            <div class="content-section">-->
-        <!--                <h3>Our Sidebar</h3>-->
-        <!--                <p class='text-muted'>You can put any information here you'd like.-->
-        <!--                <ul class="list-group">-->
-        <!--                    <li class="list-group-item list-group-item-light">Latest Posts</li>-->
-        <!--                    <li class="list-group-item list-group-item-light">Announcements</li>-->
-        <!--                    <li class="list-group-item list-group-item-light">Calendars</li>-->
-        <!--                    <li class="list-group-item list-group-item-light">etc</li>-->
-        <!--                </ul>-->
-        <!--                </p>-->
-        <!--            </div>-->
-        <!--        </div>-->
+    </div>
+    <div class="side">
+
     </div>
 </main>
 <!-- Optional JavaScript -->

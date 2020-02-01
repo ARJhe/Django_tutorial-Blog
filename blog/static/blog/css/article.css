@@ -30,3 +30,8 @@
     line-height: 1.7;
     color: #555;
 }
+@media (max-width: 767px){
+    .post-body {
+        word-break: break-word;
+    }
+}
