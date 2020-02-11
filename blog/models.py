@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+
 # Create your models here.
 class Post(models.Model):
     title = models.CharField(max_length=100)
@@ -8,6 +9,8 @@ class Post(models.Model):
     date_posted = models.DateTimeField(default=timezone.now)
     # one author may have multi post but one post only have one author
     # so this is a m2o field
+
+    # to get self function, we should define function before use it.
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):

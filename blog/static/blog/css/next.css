@@ -85,6 +85,7 @@ main{
         display: none !important;
     }
     .menu{
+        padding-left: 16px;
         float: left;
         width:unset !important;
         position: unset;

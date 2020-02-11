@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.views.generic import ListView, DetailView
+
 from django.http import HttpResponse
 from .models import Post
 
@@ -22,6 +24,18 @@ def home(request):
     }
     return render(request, 'blog/home.html', context)
 
+class PostListView(ListView):
+    model = Post
+    # from urls.py pathway PostListView.as_view() look forward a template
+    # < app > / < model > _ < viewtpye >.html
+    template_name = 'blog/home.html'
+    # after named a template set variable and pass it to view
+    context_object_name = 'posts'
+    # order
+    ordering = ['-date_posted']
+
+class PostDetailView(DetailView):
+    model = Post
 
 def about(request):
     return render(request, 'blog/about.html', {'title': "About"})
