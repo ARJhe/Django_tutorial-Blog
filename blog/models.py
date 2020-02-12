@@ -16,7 +16,8 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
+    # After finishing post create
     # To let view handle redirect we use reverse to
     # return full url string to route
-    def get_absolute_url(self):
-        return reverse('post_detail', kwargs={'pk': self.pk})
+    # def get_absolute_url(self):
+    #     return reverse('post_detail', kwargs={'pk': self.pk})

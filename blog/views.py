@@ -1,6 +1,7 @@
+from django.contrib.auth.mixins import LoginRequiredMixin as lgmxin
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
-
+from django.urls import reverse
 from django.http import HttpResponse
 from .models import Post
 
@@ -37,7 +38,8 @@ class PostListView(ListView):
 class PostDetailView(DetailView):
     model = Post
 
-class PostCreateView(CreateView):
+# include lgmxin prevent unlog-in state access post/new/ route
+class PostCreateView(lgmxin, CreateView):
     model = Post
     fields = ['title', 'content']
     # In order to fetch current author_id,
@@ -45,6 +47,14 @@ class PostCreateView(CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+    # After finishing post creates
+    # To let view handle redirect we use reverse to
+    # return full url string to route
+    def get_success_url(self):
+        # give name_space registered in urls.py
+        # which reverse will redirect after POST succeed
+        return reverse('blog_home')
 
 class PostDeleteView(DeleteView):
     model = Post

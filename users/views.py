@@ -21,6 +21,7 @@ def register(request):
     return render(request, 'users/register.html', {'form': form})
 
 # decorator prevent the state which not login direct to here
+# we can not use this decorator in classes
 @login_required
 def profile(request):
     return render(request, 'users/profile.html')
