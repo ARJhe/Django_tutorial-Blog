@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from .views import PostListView, PostDetailView
+from .views import PostListView, PostDetailView, PostCreateView
 from . import views
 urlpatterns = [
     # get views.py home() function
@@ -8,6 +8,7 @@ urlpatterns = [
     path('', PostListView.as_view(), name='blog_home'),
     # fetch variable pk which means who post
     path('post/<int:pk>/', PostDetailView.as_view(), name='post_detail'),
+    path('post/new/', PostCreateView.as_view(), name='post_form'),
     path('about/', views.about, name='blog_about'),
 ]
 # PostListView.as_view() search for a template

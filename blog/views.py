@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
 
 from django.http import HttpResponse
 from .models import Post
@@ -35,6 +35,18 @@ class PostListView(ListView):
     ordering = ['-date_posted']
 
 class PostDetailView(DetailView):
+    model = Post
+
+class PostCreateView(CreateView):
+    model = Post
+    fields = ['title', 'content']
+    # In order to fetch current author_id,
+    # we have to overwrite method: form_valid()
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+class PostDeleteView(DeleteView):
     model = Post
 
 def about(request):
