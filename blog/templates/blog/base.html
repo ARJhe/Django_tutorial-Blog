@@ -36,6 +36,11 @@
             <a class="website-text-logo" href="{% url 'blog_about' %}" title="關於作者">
                 <i class="fa fa-user"></i>
             </a>
+            {% if user.is_authenticated %}
+            <a class="website-text-logo" href="{% url 'post_form' %}" title="發表文章">
+                <i class="fa fa-pencil"></i>
+            </a>
+            {% endif %}
         </div>
         <div class="cus-menu">
             {% if user.is_authenticated %}

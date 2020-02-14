@@ -1,9 +1,12 @@
 from django.contrib.auth.mixins import LoginRequiredMixin as lgmxin
+from django.contrib.auth.mixins import UserPassesTestMixin as utpmxin
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
+from django.views.generic import ListView, DetailView
+from django.views.generic import CreateView, DeleteView, UpdateView
 from django.urls import reverse
 from django.http import HttpResponse
 from .models import Post
+
 
 # posts = [{
 #     'author': 'JHE',
@@ -25,6 +28,11 @@ def home(request):
     }
     return render(request, 'blog/home.html', context)
 
+
+def about(request):
+    return render(request, 'blog/about.html', {'title': "About"})
+
+
 class PostListView(ListView):
     model = Post
     # from urls.py pathway PostListView.as_view() look forward a template
@@ -35,13 +43,16 @@ class PostListView(ListView):
     # order
     ordering = ['-date_posted']
 
+
 class PostDetailView(DetailView):
     model = Post
+
 
 # include lgmxin prevent unlog-in state access post/new/ route
 class PostCreateView(lgmxin, CreateView):
     model = Post
     fields = ['title', 'content']
+
     # In order to fetch current author_id,
     # we have to overwrite method: form_valid()
     def form_valid(self, form):
@@ -56,8 +67,38 @@ class PostCreateView(lgmxin, CreateView):
         # which reverse will redirect after POST succeed
         return reverse('blog_home')
 
-class PostDeleteView(DeleteView):
-    model = Post
 
-def about(request):
-    return render(request, 'blog/about.html', {'title': "About"})
+# include utpmxin prevent other user edit your post
+class PostUpdateView(lgmxin, utpmxin, UpdateView):
+    model = Post
+    fields = ['title', 'content']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    # no auth no update
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return 1
+        return 0
+
+    def get_success_url(self):
+        return reverse('blog_home')
+
+
+class PostDeleteView(lgmxin, utpmxin, DeleteView):
+    model = Post
+    success_url = '/'
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    # no auth no delete
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return 1
+        return 0
+
